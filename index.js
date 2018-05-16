@@ -18,8 +18,17 @@ app.get('/', (req, res, next) => {
 
 app.get('/:id', (req, res) => {
   let record = filterDataById(data, req.params.id)
-  res.json(record)
-})
 
+  if (!record[0]) {
+    res.status(404).json({
+      error: {
+        message: 'No Record! Try another ID'
+      }
+    })
+  } else { res.json({ data: record[0] }) }
+
+
+})
+// res.length == 0
 app.listen(port)
   .on('listening', console.log.bind(console, `Listening on ${port}`))
