@@ -4,6 +4,7 @@ const cors = require('cors')
 const port = parseInt(process.env.PORT || 3000)
 const data = require('./cohorts.js')
 
+app.use(cors({origin: true, credentials: true}))
 
 function filterDataById(data, id) {
   return data.filter(element => {
